@@ -11,20 +11,24 @@ const { getUser } = require("../controllers/user.controller");
 
 const { editUser } = require("../controllers/user.controller");
 
-//*************************Profile Routes *******/
+//*********User Routes *******
 
-// http://localhost:5000/profile
+// http://localhost:5000/user
 router.get("/", getUsers, (request, response) => {
   response.send(" Get All Users successfully");
 });
 
-// http://localhost:5000/profile/:id
+// http://localhost:5000/user/:id
 router.get("/:id", getUser, (request, response) => {
   response.send(" Get one User successfully");
 });
 
-// http://localhost:5000/profile/:id/edit
-router.put("/:id/edit", passport.authenticate("jwt", { session: false }),editUser, (request, response) => {
-  // response.send(" User successfully Updated");
+
+// Not working
+// http://localhost:5000/user/:id/edit
+router.put("/:id/edit", editUser, (request, response) => {
+  response.send(" User successfully Updated");
 });
-module.exports = router;
+module.exports = router; 
+
+// first middleware in /user/:id/editpassport.authenticate("jwt", { session: false }),

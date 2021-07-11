@@ -1,34 +1,36 @@
 const connection = require("../config");
 
-const User = {};
+const List = {};
 
-User.getAllUsers = (callback, user) => {
-  connection.query("SELECT * FROM User;", (err, results) => {
+List.getAllLists = (callback, user) => {
+  const {id} = user;
+  connection.query("SELECT * FROM Lists WHERE user_id = ?;", 
+  [id],
+  (err, results) => {
     callback(err, results);
   });
 };
 
-User.getOneUser = (callback, oneUser) => {
+List.getOneList = (callback, oneUser) => {
   const { id } = oneUser;
   const formData = [id];
-  const sql = "SELECT * FROM User WHERE id = ?";
+  const sql = "SELECT * FROM Lists WHERE id = ?";
   connection.query(sql, formData, (err, results) => {
     callback(err, results);
   });
 };
 
-User.editedUser = (callback, params, body) => {
-
+List.editedList = (callback, params, body) => {
   const { id } = params;
   const formData = body ;
   console.log('formData: ',formData)
 
   connection.query(
-    "UPDATE User SET ? WHERE id = ?",
+    "UPDATE Lists SET ? WHERE id = ?",
     [formData, id], (err, results) => {
 
       connection.query(
-        "Select * from User WHERE id = ?", [id],
+        "Select * from Lists WHERE id = ?", [id],
       (err, results)=>{
         callback(err, results)
         console.log("results",results)
@@ -37,7 +39,7 @@ User.editedUser = (callback, params, body) => {
   );
 }
 
-User.register = (callback, newUser) => {
+List.register = (callback, newUser) => {
   const { name, email, password, amountBadges } = newUser;
   // console.log(newUser);
   connection.query(
@@ -49,4 +51,4 @@ User.register = (callback, newUser) => {
   );
 };
 
-module.exports = User;
+module.exports = List;

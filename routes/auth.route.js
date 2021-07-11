@@ -83,7 +83,7 @@ router.post("/login", (req, res) =>{
       if (!user) return res.status(400).json({ message: info.message});
       return res.json({ foundUser, token });
     }
-  )(req, res);  //WHAT DOES THIS DO????
+  )(req, res);
 })
 
 // need to pass to MVC

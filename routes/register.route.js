@@ -5,8 +5,7 @@ const { registerUser } = require("../controllers/register.controller")
 
 // http://localhost:5000/register
 router.post("/", registerUser, (req, res, next) => {
-  res.json()
-
+  res.send('Your registration is a success')
 })
 
 module.exports = router;
