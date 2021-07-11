@@ -24,11 +24,10 @@ router.get("/:id", getUser, (request, response) => {
 });
 
 
-// Not working
-// http://localhost:5000/user/:id/edit
-router.put("/:id/edit", editUser, (request, response) => {
+// http://localhost:5000/user/:id/
+router.put("/:id/", editUser, (request, response) => {
   response.send(" User successfully Updated");
 });
 module.exports = router; 
 
-// first middleware in /user/:id/editpassport.authenticate("jwt", { session: false }),
+// first middleware in user.put /user/:id passport.authenticate("jwt", { session: false }),

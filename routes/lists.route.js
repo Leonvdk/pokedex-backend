@@ -3,28 +3,40 @@ const router = express.Router();
 
 
 
-const { getLists } = require("../controllers/lists.controller");
+const { getLists, getList, editList, deleteList, createList } = require("../controllers/lists.controller");
 
-const { getList } = require("../controllers/lists.controller");
-
-const { editList } = require("../controllers/lists.controller");
 
 //*********User Routes *******
 
-// http://localhost:5000/lists
-router.get("/", getLists, (request, response) => {
+//*GET ALL
+// http://localhost:5000/lists/all/:userId
+router.get("/all/:userId", getLists, (request, response) => {
   response.send(" Get All lists successfully");
 });
 
-// http://localhost:5000/list/:id
-router.get("/:id", getList, (request, response) => {
-  response.send(" Get one list successfully");
+//*GET ONE
+// http://localhost:5000/list/:userId/:id
+router.get("/:id/:userId", getList, (request, response) => {
+  response.status(200).send(" Get one list successfully");
 });
 
-
+//*UPDATE
 // Not working
-// http://localhost:5000/list/:id/edit
-router.put("/:id/edit", editList, (request, response) => {
+// http://localhost:5000/list/:id/
+router.put("/:id/", editList, (request, response) => {
   response.send(" List successfully Updated");
 });
+
+//*DELETE LIST
+// http://localhost:5000/list/:id/
+router.delete("/:id/", deleteList, (req, res) => {
+        res.status(200).send("Album successfully deleted !");
+});
+
+//* CREATE LIST
+// http://localhost:5000/list/:userId/:listName
+router.post("/:userId/:listName", createList, (req, res, next) => {
+  res.status(200).send('Success')
+})
+
 module.exports = router; 

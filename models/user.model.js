@@ -43,8 +43,20 @@ User.register = (callback, newUser) => {
   connection.query(
     "INSERT INTO User (name, email, password, amountBadges) VALUES (?, ?, ?, ?);",
     [name, email, password, amountBadges],
-    (err, results, fields) => {
-      callback(err, results, fields);
+    (err, results)=>{
+      connection.query(
+        "SELECT * FROM User WHERE email = ?;",
+        [email],
+        (err, results)=>{
+          connection.query(
+            "INSERT INTO Lists (listName, User_id) VALUES ('My Pokemon', ?);",
+            [results[0].id],
+            (err, results)=>{
+              callback(err, results)
+            }
+          )  
+        }
+      )
     }
   );
 };
