@@ -10,28 +10,28 @@ const getLists = (request, response, next) => {
   request.params );
 };
 
-const getList = (request, response, next) => {
+const getList = (req, res, next) => {
   List.getOneList((err, results) => {
     err 
-    ? response.status(500).json(err) 
+    ? res.status(500).json(err) 
     : next();
-  }, request.params);
+  }, req.params);
 };
 
-const editList = (request, response) => {
+const editList = (req, res, next) => {
   List.edit(
-    (err, res) => {
+    (err, results) => {
       err 
       ? res.status(500).json(err) 
       : next()
     },
-    request.params,
-    request.body
+    req.params,
+    req.body
   );
 };
 
 
-const deleteList = (req, res) => {
+const deleteList = (req, res, next) => {
   List.delete(
     (err, results) => {
       err 
