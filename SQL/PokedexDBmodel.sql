@@ -27,11 +27,9 @@ CREATE TABLE `Lists` (
 CREATE TABLE `Lists_Pokemon` (
   `list_id` INT,
   `pokemon_name` varchar(50),
-    CONSTRAINT fk_lists FOREIGN KEY (list_id)  
-    REFERENCES Lists(id),
     CONSTRAINT fk_pokemon FOREIGN KEY (pokemon_name)  
     REFERENCES Pokemon(name)    
 );
 
 
--- INSERT INTO User (name, email, password, amountBadges) VALUES ('Ash', 'Ash@pallettown.pkmn', 'pika', 3);
+INSERT INTO User (name, email, password, amountBadges) VALUES ('Ash', 'Ash@pallettown.pkmn', 'pika', 3);

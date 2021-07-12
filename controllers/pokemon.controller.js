@@ -9,6 +9,18 @@ const addPokemon = (request, response, next) => {
   },
   request.params );
 };
+
+const removePokemon = (request, response, next) => {
+  Pokemon.remove((err, results) => {
+    err 
+    ? (response.status(500).json(err)) 
+    : (response.status(200).json(results));
+    // next();
+  },
+  request.params );
+};
+
+
 const getPokeList = (request, response, next) => {
   Pokemon.getAll((err, results) => {
     err 
@@ -60,4 +72,4 @@ const getPokeList = (request, response, next) => {
 //   req.params);
 // };
 
-module.exports = { addPokemon, getPokeList };
+module.exports = { addPokemon, getPokeList, removePokemon };
