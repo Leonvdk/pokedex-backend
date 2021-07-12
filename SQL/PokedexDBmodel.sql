@@ -34,4 +34,4 @@ CREATE TABLE `Lists_Pokemon` (
 );
 
 
-INSERT INTO User (name, email, password, amountBadges) VALUES ('Ash', 'Ash@pallettown.pkmn', 'pika', 3);
+-- INSERT INTO User (name, email, password, amountBadges) VALUES ('Ash', 'Ash@pallettown.pkmn', 'pika', 3);

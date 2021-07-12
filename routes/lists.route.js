@@ -6,12 +6,13 @@ const router = express.Router();
 const { getLists, getList, editList, deleteList, createList } = require("../controllers/lists.controller");
 
 
+
 //*********User Routes *******
 
 //*GET ALL
 // http://localhost:5000/lists/all/:userId
 router.get("/all/:userId", getLists, (request, response) => {
-  response.send(" Get All lists successfully");
+  response.status(200).send(" Get All lists successfully");
 });
 
 //*GET ONE
@@ -22,14 +23,14 @@ router.get("/:id/:userId", getList, (request, response) => {
 
 //*UPDATE
 // Not working
-// http://localhost:5000/lists/:id/
-router.put("/:id/", editList, (request, response) => {
+// http://localhost:5000/lists/:userId/:id/
+router.put("/:userId/:id/", editList, (request, response) => {
   response.status(500).send(" List successfully Updated");
 });
 
 //*DELETE LIST
-// http://localhost:5000/lists/:id/
-router.delete("/:id/", deleteList, (req, res) => {
+// http://localhost:5000/lists/:userId/:id/
+router.delete("/:userId/:id/", deleteList, (req, res) => {
         res.status(200).send("Album successfully deleted !");
 });
 

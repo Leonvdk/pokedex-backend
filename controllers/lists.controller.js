@@ -4,7 +4,7 @@ const getLists = (request, response, next) => {
   List.getAll((err, results) => {
     err 
     ? (response.status(500).json(err)) 
-    : (response.json(results));
+    : (response.status(200).json(results));
     // next();
   },
   request.params );
@@ -23,7 +23,7 @@ const editList = (req, res, next) => {
     (err, results) => {
       err 
       ? res.status(500).json(err) 
-      : next()
+      : res.status(200).json(results)
     },
     req.params,
     req.body
@@ -36,7 +36,7 @@ const deleteList = (req, res, next) => {
     (err, results) => {
       err 
       ? res.status(500).send(err) 
-      : next()
+      : res.status(200).json(results)
     },
     req.params
   );
@@ -46,7 +46,7 @@ const createList = (req, res, next) =>{
   List.create((err, results) => {
     err
     ? res.status(500).send(err)
-    : next();
+    : res.status(200).json(results)
   }, 
   req.params);
 };
